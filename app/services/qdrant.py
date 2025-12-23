@@ -23,13 +23,15 @@ class QdrantService(VectorDatabase):
         )
 
         self.client.upsert(
-            collection_name=self.settings.COLLECTION_NAME, points=[point]
+            collection_name=self.settings.QDRANT_COLLECTION_NAME, points=[point]
         )
         return point_id
 
     def search(self, vector: List[float], limit: int) -> List[Any]:
-        return self.client.search(
-            collection_name=self.settings.COLLECTION_NAME,
-            query_vector=(self.settings.VECTOR_NAME, vector),
+        result = self.client.query_points(
+            collection_name=self.settings.QDRANT_COLLECTION_NAME,
+            query=vector,
+            using=self.settings.QDRANT_VECTOR_NAME,
             limit=limit,
         )
+        return result.points
