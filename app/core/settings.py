@@ -7,8 +7,8 @@ from pydantic_settings import BaseSettings
 # ==============================
 class Settings(BaseSettings):
     # Indentificacao
-    app_name: str = "Template Python"
-    description: str = "Template generico de API"
+    app_name: str = "Qdrant Manager"
+    description: str = "Manage your Qdrant instance with ease"
     environment: str = "development"
 
     # Servidor
@@ -21,6 +21,15 @@ class Settings(BaseSettings):
     allowed_credentials: bool = True
     allowed_methods: list[str] = ["*"]
     allowed_headers: list[str] = ["*"]
+
+    # Google Gemini
+    GOOGLE_API_KEY: str
+
+    # Qdrant
+    QDRANT_URL: str = "http://localhost:6333"
+    QDRANT_API_KEY: str | None = None
+    QDRANT_COLLECTION_NAME: str = "engineering_knowledge"
+    QDRANT_VECTOR_SIZE: int = 768  # Gemini text-embedding-004
 
     class Config:
         env_file: str = ".env"
