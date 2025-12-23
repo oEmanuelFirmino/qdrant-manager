@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     QDRANT_URL: str = "http://localhost:6333"
     QDRANT_API_KEY: str | None = None
     QDRANT_COLLECTION_NAME: str = "engineering_knowledge"
+    QDRANT_VECTOR_NAME: str = ""  # Gemini text-embedding-004
     QDRANT_VECTOR_SIZE: int = 768  # Gemini text-embedding-004
 
     class Config:

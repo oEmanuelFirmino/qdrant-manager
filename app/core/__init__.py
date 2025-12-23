@@ -5,6 +5,7 @@ from .settings import (
     RootResponse,
     ServerInfo,
 )
+from .interfaces import VectorDatabase, VectorGenerator
 
 __all__ = [
     "Settings",
@@ -12,4 +13,6 @@ __all__ = [
     "HealthResponse",
     "RootResponse",
     "ServerInfo",
+    "VectorDatabase",
+    "VectorGenerator",
 ]

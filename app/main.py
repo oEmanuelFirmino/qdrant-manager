@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.settings import Settings
 from app.core.settings import RootResponse, HealthResponse, ApplicationInfo, ServerInfo
+from app.api.qdrant_routes import router as qdrant_router
 
 
 def create_app() -> FastAPI:
@@ -40,6 +41,8 @@ def create_app() -> FastAPI:
         return HealthResponse(
             status="ok", message="O serviço está funcionando corretamente!"
         )
+
+    app.include_router(qdrant_router, prefix="/api/v1/qdrant")
 
     return app
 
